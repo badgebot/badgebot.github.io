@@ -53,7 +53,26 @@ color: #fff !important;
     <p>Photo by <a id="author"></a> / <a href="https://unsplash.com/?utm_source=portfolio&utm_medium=referral&utm_campaign=api-credit">Unsplash</a></p>
   </div>
   </div>
+  <?php
+    $client_id = getenv('CLIENT_ID')
+    $req_uri = "https://api.unsplash.com/photos/random?client_id=" + $client_id
+    $res =  file_get_contents($req_uri);
+    echo $res
+  ?>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script type="text/javascript" src="load.js"></script>
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        var body = $("body"),
+        author = $('#author')
+        utmParams = "?utm_source=portfolio&utm_medium=referral&utm_campaign=api-credit"
+        unsplashImg = "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=2d58953ffeb732135002a465be8230d3"
+        unsplashAuthor = "Dustin Lee"
+        unsplashLink = "https://unsplash.com/@dustinlee" + utmParams
+        author.text(unsplashAuthor)
+        author.attr("href", unsplashLink)
+        body.css('background-image', 'url(' + unsplashImg + ')');
+    });
+    
+    </script>
 </body>
 </html>
